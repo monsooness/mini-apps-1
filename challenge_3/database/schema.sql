@@ -18,7 +18,7 @@ CREATE TABLE users_address(
 
 CREATE TABLE users_banking(
 	credit_card INT (20),
-	exp_date DATE (10),
+	exp_date DATEa,
 	cvv_num INT (10),
 	zip_code INT (10)
 	);
