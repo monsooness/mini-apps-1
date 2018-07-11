@@ -1,8 +1,7 @@
-const data = require('./server')
 const fs = require('fs');
 
 const retrieveData = () => {
-  fs.readFile('./samples/sales_report.json', 'utf8', (err, data) => {
+  fs.appendFile('./samples/sales_report.json', 'utf8', (err, data) => {
     if (err) {
     	console.log('err:', err)
     } else {
@@ -16,12 +15,14 @@ const addData = (input) => {
 		if (err) {
 			console.log('err:', err)
 		} else {
-			
+			console.log('Successfully added data to sales_report')
+			return
 		}
 	})
+} 
+
+
+module.exports = {
+	retrieveData,
+	addData
 }
-
-
-
-
-retrieveData()
