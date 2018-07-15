@@ -9,7 +9,8 @@ class App extends React.Component {
 				email : '',
 
 			}	
-	}
+	
+    }
 
 	buttonClick() {
 		this.setState({buttonName : 'Next'})
@@ -19,17 +20,16 @@ class App extends React.Component {
 		this.setState({[e.target.id] : e.target.value})
 	}
     
-    handleClick() {
-    	alert('hi')
+    handleClick(e) {
     	alert(this.state.name)
-    }
-
+    	
+   }
 
 	render() {
 		let form;
 
 		if (this.state.count ===1) {
-			form = <Form1 />
+			form = <Form1 handleClick={this.handleClick.bind(this)} handleChange={this.handleChange.bind(this)}/>
 		} else if (this.state.count ===2) {
 			form = <Form2 />
 		} else if (this.state.count === 3) {
@@ -60,12 +60,11 @@ function Form1(props) {
 		  <input id='name' value={props.name} type='text' name="First Name" onChange={props.handleChange}/>
 		  <input type='text' value={props.last_name} id="last_name" onChange={props.handleChange}/>
 		  <input type='text' value={props.email} id="email" onChange={props.handleChange}/>
-		  <button type='submit' onClick={props.buttonClick} >
+		  <button type='submit' onClick={props.handleClick} >
 		    Submit
 		  </button>
 		  </label>
 		</div>
-
 	)
 }
 
