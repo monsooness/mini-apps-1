@@ -20,20 +20,38 @@ class App extends React.Component {
 		this.setState({[e.target.id] : e.target.value})
 	}
     
-    handleClick(e) {
-    	alert(this.state.name)
+    handleSubmit(e) {
+    	e.preventDefault()
+    	this.submitToDB(this.state)
     	
+    	
+   }
+
+   submitToDB(data) {
+     $.ajax({
+  type: "POST",
+  url: "http://127.0.0.1:3000/users/",
+  contenttype: "application/json",
+  data: JSON.stringify(data),
+  success: (results) => {
+  	console.log('Succesfully added to Database')
+  	console.log(results)
+  }
+});
    }
 
 	render() {
 		let form;
 
 		if (this.state.count ===1) {
-			form = <Form1 handleClick={this.handleClick.bind(this)} handleChange={this.handleChange.bind(this)}/>
+			form = <Form1 
+			handleSubmit={this.handleSubmit.bind(this)} 
+			state={this.state}/>
 		} else if (this.state.count ===2) {
 			form = <Form2 />
 		} else if (this.state.count === 3) {
-			form = <Form3 />
+			form = <Form1 />
+			this.setState({count : 0})
 		}
 
 		return (
@@ -60,7 +78,7 @@ function Form1(props) {
 		  <input id='name' value={props.name} type='text' name="First Name" onChange={props.handleChange}/>
 		  <input type='text' value={props.last_name} id="last_name" onChange={props.handleChange}/>
 		  <input type='text' value={props.email} id="email" onChange={props.handleChange}/>
-		  <button type='submit' onClick={props.handleClick} >
+		  <button type='submit' onClick={props.handleSubmit}  >
 		    Submit
 		  </button>
 		  </label>
