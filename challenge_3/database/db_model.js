@@ -42,13 +42,13 @@ const getUsersBanking = (cb, item) => {
  	})
 };
 
-// addUsers('ravee','malla','ravmalla','monsoon', (err) => {
-// 	if (err) {
-// 		console.log('err')
-// 	} else {
-// 		console.log('succesfully added ravee to db')
-// 	}
-// })
+addUsers('edward','chao','cc','bb', (err) => {
+	if (err) {
+		console.log('err')
+	} else {
+		console.log('succesfully added  to db')
+	}
+})
 
 
 module.exports = {
